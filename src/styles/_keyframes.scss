@@ -1,0 +1,49 @@
+.fade-in {
+	animation: fadeIn 0.75s;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.bounce {
+	animation: bounce 0.75s;
+}
+
+@keyframes bounce {
+	from {
+		transform: scale(0.25);
+	}
+
+	60% {
+		transform: scale(1.25);
+	}
+
+	to {
+		transform: scale(1);
+	}
+}
+
+.rotate {
+	animation: rotate 1.25s;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(60deg);
+	}
+
+	60% {
+		transform: rotate(-45deg);
+	}
+
+	to {
+		transform: rotate(0);
+	}
+}
