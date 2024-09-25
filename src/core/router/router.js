@@ -1,6 +1,8 @@
 import { Layout } from '@/components/layout/layout.component'
 import { NotFound } from '@/components/screens/not-found/not-found.component'
 
+import { query } from '../lib/query.lib'
+
 export class Router {
 	#routes = null
 	#currentRoute = null
@@ -62,17 +64,17 @@ export class Router {
 	}
 
 	#render() {
-		const component = new this.#currentRoute.component()
+		const component = new this.#currentRoute.component().render()
 
 		if (!this.#layout) {
 			this.#layout = new Layout({
 				router: this,
-				children: component.render()
-			})
+				children: component
+			}).render()
 
-			document.getElementById('app').innerHTML = this.#layout.render()
+			query('#app').append(this.#layout)
 		} else {
-			document.querySelector('main').innerHTML = component.render()
+			query('#content').html('').append(component)
 		}
 	}
 }
