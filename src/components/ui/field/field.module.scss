@@ -1,0 +1,16 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.field {
+	@include transition(border-color);
+	background-color: $onyx;
+	border-radius: $radius;
+	border: 1px solid transparent;
+	padding: 12px 20px;
+	margin-bottom: 12.5rem;
+	display: block;
+
+	&:focus-within {
+		border-color: rgba($purple-mimosa, 0.5);
+	}
+}

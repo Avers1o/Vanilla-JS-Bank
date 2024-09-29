@@ -1,0 +1,36 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.button {
+	@include transition(background-color);
+	background-color: $onyx;
+	color: $pale-grey;
+	border-radius: $radius;
+	padding: 12px 30px;
+	font-size: 18px;
+	font-weight: 500;
+	text-transform: capitalize;
+
+	&:disabled {
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+
+	&:hover {
+		background-color: lighter($onyx, 2.5%);
+	}
+
+	&.green {
+		background-color: rgba($aqua, 50%);
+		&:hover {
+			background-color: rgba($aqua, 75%);
+		}
+	}
+
+	&.purple {
+		background-color: rgba($purple-mimosa, 50%);
+		&:hover {
+			background-color: rgba($purple-mimosa, 75%);
+		}
+	}
+}
