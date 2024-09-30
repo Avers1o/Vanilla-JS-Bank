@@ -1,0 +1,10 @@
+@import '@/styles/variables';
+
+.logo {
+	> a {
+		color: $snow-white;
+		font-weight: 600;
+		font-size: 40px;
+		text-decoration: none;
+	}
+}

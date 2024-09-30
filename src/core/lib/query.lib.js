@@ -19,7 +19,7 @@ class Query {
 		} else if (selector instanceof HTMLElement) {
 			this.element = selector
 		} else {
-			throw new Error('Invalid selector type')
+			throw new Error('Invalid selector type!')
 		}
 	}
 
@@ -63,7 +63,7 @@ class Query {
 
 	before(newElement) {
 		if (!(newElement instanceof HTMLElement)) {
-			throw new Error('Element must be an HTMLElement')
+			throw new Error('Element must be an HTMLElement!')
 		}
 
 		const parentElement = this.element.parentElement
@@ -91,6 +91,21 @@ class Query {
 		}
 	}
 
+	/**
+	 * Get or Set the text content of the selected element.
+	 * @param {string} [textContent] - Optional text content to set. If not provided, the current inner HTML will be returned.
+	 * @returns {Query|string} The current Query instance for chaining when setting text content, or the current text content when getting.
+	 */
+
+	text(textContent) {
+		if (typeof textContent === 'undefined') {
+			return this.element.textContent
+		} else {
+			this.element.textContent = textContent
+			return this
+		}
+	}
+
 	/* EVENTS */
 
 	/**
@@ -106,6 +121,7 @@ class Query {
 	}
 
 	/* FORM */
+
 	/**
 	 * Set attributes and event listeners for an input element.
 	 * @param {object} options - An object containing input options.
@@ -116,7 +132,7 @@ class Query {
 
 	input({ onInput, ...rest }) {
 		if (this.element.tagName.toLowerCase() !== 'input') {
-			throw new Error('Element must be an input')
+			throw new Error('Element must be an input!')
 		}
 
 		for (const [key, value] of Object.entries(rest)) {
@@ -141,7 +157,7 @@ class Query {
 			this.element.tagName.toLowerCase() !== 'input' ||
 			this.element.type !== 'number'
 		) {
-			throw new Error('Element must be an input with type "number"')
+			throw new Error('Element must be an input with type "number"!')
 		}
 
 		this.element.addEventListener('input', event => {
@@ -169,7 +185,7 @@ class Query {
 			this.element.tagName.toLowerCase() !== 'input' ||
 			this.element.type !== 'text'
 		) {
-			throw new Error('Element must be an input with type "text"')
+			throw new Error('Element must be an input with type "text"!')
 		}
 
 		this.element.addEventListener('input', event => {
@@ -180,6 +196,29 @@ class Query {
 
 			return this
 		})
+	}
+
+	/* ATTRIBUTES */
+
+	/**
+	 * Set or get te value of an attribute on the selected element.
+	 * @param {string} attributeName - The name of the attribute to set or get param.
+	 * @param {string} [value] - The value to set for the attribute. If not provided, the current value of the attribute will be returned.
+	 * @returns {Query|string} - The current Query instance for chaining (if setting) or he attribute value (if getting).
+	 */
+
+	attribute(attributeName, value) {
+		if (typeof attributeName !== 'string') {
+			throw new Error('Attribute name must be a string!')
+		}
+
+		if (typeof value === 'undefined') {
+			return this.element.getAttribute(attributeName)
+		} else {
+			this.element.setAttribute(attributeName, value)
+
+			return this
+		}
 	}
 
 	/* STYLES */

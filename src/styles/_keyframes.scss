@@ -47,3 +47,18 @@
 		transform: rotate(0);
 	}
 }
+
+@keyframes showIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+
+	75% {
+		opacity: 1;
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}

@@ -3,14 +3,14 @@
 
 .field {
 	@include transition(border-color);
-	background-color: $onyx;
+	background-color: $black-blue;
 	border-radius: $radius;
 	border: 1px solid transparent;
 	padding: 12px 20px;
-	margin-bottom: 12.5rem;
+	margin-bottom: 1.25rem;
 	display: block;
 
 	&:focus-within {
-		border-color: rgba($purple-mimosa, 0.5);
+		border-color: rgba($slate-blue, 0.5);
 	}
 }

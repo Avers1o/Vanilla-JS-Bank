@@ -1,0 +1,38 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.user-item {
+	@include flex-horizontal-center;
+	padding: 8px 14px;
+	background-color: $black-blue;
+	border-radius: 12px;
+	color: $snow-white;
+	font-size: 18px;
+
+	&:disabled {
+		cursor: default;
+	}
+
+	&:not(:disabled) {
+		@include transition(background-color);
+
+		&:hover {
+			background-color: scale-color($black-blue, $lightness: 15%);
+		}
+	}
+
+	&.liver {
+		background-color: $liver;
+	}
+
+	> img {
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		margin-right: 5px;
+	}
+
+	> span {
+		margin-left: 5px;
+	}
+}

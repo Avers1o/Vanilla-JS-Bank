@@ -1,0 +1,25 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.logout-button {
+	> button {
+		@include transition(color);
+		background-color: $black-blue;
+		border: none;
+		border-radius: 50%;
+		color: scale-color($liver, $lightness: 20%);
+		width: 40px;
+		height: 40px;
+		padding: 5px;
+
+		&:hover {
+			background-color: scale-color($black-blue, $lightness: 20%);
+			color: $snow-white;
+		}
+
+		> svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
+}

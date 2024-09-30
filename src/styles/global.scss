@@ -8,8 +8,8 @@ body {
 }
 
 body {
-	background-color: $dark-jungle-green;
-	color: $pale-grey;
+	background-color: $grey-blue;
+	color: $snow-white;
 	font-size: 18px;
 	line-height: 1.5;
 }
@@ -17,22 +17,22 @@ body {
 input {
 	font-size: 16px;
 	background-color: transparent;
-	color: $pale-grey;
+	color: $snow-white;
 
 	&::placeholder {
-		color: $davy-grey;
+		color: $liver;
 	}
 }
 
 a {
-	color: $pale-grey;
+	color: $snow-white;
 	text-decoration: none;
 	transition: border-color 0.25s ease-in-out;
 	border-bottom: 1px solid transparent;
 	animation: drawing 0.5s;
 
 	&:hover {
-		border-color: $purple-mimosa;
+		border-color: $slate-blue;
 	}
 }
 

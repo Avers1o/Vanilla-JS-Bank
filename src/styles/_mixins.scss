@@ -2,7 +2,7 @@
 
 @mixin dashboard-section($variant: 'big') {
 	margin-top: $gap;
-	background-color: $onyx;
+	background-color: $black-blue;
 	border-radius: $radius;
 
 	@if $variant == small {

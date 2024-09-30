@@ -3,8 +3,8 @@
 
 .button {
 	@include transition(background-color);
-	background-color: $onyx;
-	color: $pale-grey;
+	background-color: $black-blue;
+	color: $snow-white;
 	border-radius: $radius;
 	padding: 12px 30px;
 	font-size: 18px;
@@ -17,20 +17,22 @@
 	}
 
 	&:hover {
-		background-color: lighter($onyx, 2.5%);
+		background-color: scale-color($black-blue, $lightness: 20%);
 	}
 
 	&.green {
-		background-color: rgba($aqua, 50%);
+		background-color: $turquoise;
+
 		&:hover {
-			background-color: rgba($aqua, 75%);
+			background-color: scale-color($turquoise, $lightness: 20%);
 		}
 	}
 
 	&.purple {
-		background-color: rgba($purple-mimosa, 50%);
+		background-color: $slate-blue;
+
 		&:hover {
-			background-color: rgba($purple-mimosa, 75%);
+			background-color: scale-color($slate-blue, $lightness: 20%);
 		}
 	}
 }
