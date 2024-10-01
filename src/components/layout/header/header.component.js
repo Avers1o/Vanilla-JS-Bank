@@ -5,6 +5,7 @@ import { UserItem } from '@/components/ui/user-item/user-item.component'
 
 import * as styles from './header.module.scss'
 import template from './header.template.html'
+
 import { Logo } from './logo/logo.component'
 import { LogoutButton } from './logout-button/logout-button.component'
 import { Search } from './search/search.component'

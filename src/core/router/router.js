@@ -1,7 +1,7 @@
+import { query } from '@/core/lib/query/query.lib'
+
 import { Layout } from '@/components/layout/layout.component'
 import { NotFound } from '@/components/screens/not-found/not-found.component'
-
-import { query } from '../lib/query.lib'
 
 export class Router {
 	#routes = null

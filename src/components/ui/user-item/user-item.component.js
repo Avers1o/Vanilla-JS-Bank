@@ -1,9 +1,8 @@
 import { ChildComponent } from '@/core/components/child.component'
-import { query } from '@/core/lib/query.lib'
+import { query } from '@/core/lib/query/query.lib'
 import renderService from '@/core/services/render.service'
 
 import * as styles from './/user-item.module.scss'
-
 import template from './user-item.template.html'
 
 export class UserItem extends ChildComponent {

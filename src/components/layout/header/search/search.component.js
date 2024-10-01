@@ -1,5 +1,5 @@
 import { ChildComponent } from '@/core/components/child.component'
-import { query } from '@/core/lib/query.lib'
+import { query } from '@/core/lib/query/query.lib'
 import renderService from '@/core/services/render.service'
 
 import * as styles from './search.module.scss'
