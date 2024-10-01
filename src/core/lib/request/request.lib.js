@@ -11,9 +11,12 @@
  * @param {Function} [options.onError=null] -Callback function to be called on error response.
  * @returns {Promise<{isLoading: boolean, error: string|null, data: any|null}>} - An object containing the loading state, error, and data from the response.
  */
+import { StorageService } from '@/core/services/storage.service'
+
 import { SERVER_URL } from '@/config/url.config'
 
 import { extractErrorMessage } from './extract-error-message'
+import { ACCESS_TOKEN_KEY } from '@/constants/auth.constants'
 
 export async function Request({
 	path,
@@ -29,7 +32,7 @@ export async function Request({
 	const url = `${SERVER_URL}/api${path}`
 
 	/* ACCESS_TOKEN from LS */
-	const accessToken = ''
+	const accessToken = new StorageService().getItem(ACCESS_TOKEN_KEY)
 
 	const requestOptions = {
 		method,
@@ -63,7 +66,7 @@ export async function Request({
 					onError(errorMessage)
 				}
 
-				/* Notification Error */
+				new NotificationService().show('error', errorMessage)
 			}
 		}
 	} catch (errorData) {
@@ -71,6 +74,8 @@ export async function Request({
 
 		if (onError) {
 			onError(errorMessage)
+
+			new NotificationService().show('error', errorMessage)
 		}
 	} finally {
 		isLoading = false
