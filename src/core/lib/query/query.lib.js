@@ -104,6 +104,7 @@ class Query {
 			return this.element.innerHTML
 		} else {
 			this.element.innerHTML = htmlContent
+
 			return this
 		}
 	}
@@ -119,6 +120,7 @@ class Query {
 			return this.element.textContent
 		} else {
 			this.element.textContent = textContent
+
 			return this
 		}
 	}
@@ -156,6 +158,21 @@ class Query {
 		}
 
 		return this
+	}
+
+	/**
+	 * Gets or sets the value of a input element.
+	 * @param {string} [newValue] - The new value to set for the input element. If not provided, the method returns the current value.
+	 * @returns {string|Query} - If newValue is provided, returns the Query instance. Otherwise returns the current value of the input element.
+	 */
+
+	value(newValue) {
+		if (typeof newValue === 'undefined') {
+			return this.element.value
+		} else {
+			this.element.value = newValue
+			return this
+		}
 	}
 
 	/**
@@ -211,7 +228,7 @@ class Query {
 
 	/**
 	 * Set attributes and event listeners for a credit card input element.
-	 * @return {Query} The current Query instance for chaining
+	 * @returns {Query} The current Query instance for chaining
 	 */
 
 	creditCardInput() {
@@ -257,6 +274,22 @@ class Query {
 		}
 	}
 
+	/**
+	 * Removes an attribute from the current element.
+	 * @param {strimg} attributeName - The name of the attribute to remove.
+	 * @returns {Query} - Returns the Query instance.
+	 */
+
+	removeAttribute(attributeName) {
+		if (typeof attributeName !== 'string') {
+			throw new Error('Attribute name must be a string!')
+		}
+
+		this.element.removeAttribute(attributeName)
+
+		return this
+	}
+
 	/* STYLES */
 
 	/**
@@ -272,6 +305,7 @@ class Query {
 		}
 
 		this.element.style[property] = value
+
 		return this
 	}
 

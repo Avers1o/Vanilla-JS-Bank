@@ -11,6 +11,8 @@ import { CardService } from '@/api/card.service'
 import * as styles from './card-info.module.scss'
 import template from './card-info.template.html'
 
+import { BALANCE_UPDATED } from '@/constants/event.constants'
+
 export class CardInfo extends ChildComponent {
 	#CODE = '*****'
 
@@ -21,6 +23,23 @@ export class CardInfo extends ChildComponent {
 		this.cardService = new CardService()
 
 		this.element = renderService.htmlToElement(template, [], styles)
+		this.#addListeners()
+	}
+
+	#addListeners() {
+		document.addEventListener(BALANCE_UPDATED, this.#onUpdateBalance)
+	}
+
+	#removeListeners() {
+		document.removeEventListener(BALANCE_UPDATED, this.#onUpdateBalance)
+	}
+
+	#onUpdateBalance = () => {
+		this.fetchData()
+	}
+
+	destroy() {
+		this.#removeListeners()
 	}
 
 	#copyCardNumber(event) {

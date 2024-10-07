@@ -23,8 +23,6 @@ export class Header extends ChildComponent {
 	}
 
 	update() {
-		console.log(this.store.state.user)
-
 		this.user = this.store.state.user
 
 		const authSideElement = query(this.element).find('#auth-side')
