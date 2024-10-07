@@ -19,6 +19,7 @@ class Query {
 		} else if (selector instanceof HTMLElement) {
 			this.element = selector
 		} else {
+			console.log(selector)
 			throw new Error('Invalid selector type!')
 		}
 	}
@@ -38,6 +39,22 @@ class Query {
 			return element
 		} else {
 			throw new Error(`Element ${selector} not found!`)
+		}
+	}
+
+	/**
+	 * Find all elements that matches the specified selector within the selected element.
+	 * @param {string} selector - A CSS selector string to search for within the selected element.
+	 * @returns {Query} - An array of new Query instances for the found elements.
+	 */
+
+	findAll(selector) {
+		const elements = this.element.querySelectorAll(selector)
+
+		if (elements) {
+			return Array.from(elements).map(element => new Query(element))
+		} else {
+			throw new Error(`Elements ${selector} not found!`)
 		}
 	}
 

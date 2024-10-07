@@ -73,8 +73,6 @@ export async function Request({
 	} catch (errorData) {
 		const errorMessage = extractErrorMessage(errorData)
 
-		console.log(errorMessage)
-
 		if (errorMessage) {
 			onError(errorMessage)
 

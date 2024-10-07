@@ -14,7 +14,10 @@ export class CardService {
 	getByUser(onSuccess) {
 		return Request({
 			path: `${this.#BASE_URL}/by-user`,
-			onSuccess
+			onSuccess,
+			onError: errorMessage => {
+				this.notificationService.show('error', errorMessage)
+			}
 		})
 	}
 

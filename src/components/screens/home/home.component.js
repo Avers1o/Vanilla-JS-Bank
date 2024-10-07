@@ -4,6 +4,8 @@ import renderService from '@/core/services/render.service'
 import * as styles from './home.module.scss'
 import template from './home.template.html'
 
+import { CardInfo } from './card-info/card-info.component'
+
 export class Home extends BaseScreen {
 	element
 
@@ -14,7 +16,7 @@ export class Home extends BaseScreen {
 	}
 
 	render() {
-		this.element = renderService.htmlToElement(template, [], styles)
+		this.element = renderService.htmlToElement(template, [CardInfo], styles)
 
 		return this.element
 	}
