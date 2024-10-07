@@ -1,3 +1,11 @@
+import { NotificationService } from '@/core/services/notification.service'
+import { StorageService } from '@/core/services/storage.service'
+
+import { SERVER_URL } from '@/config/url.config'
+
+import { extractErrorMessage } from './extract-error-message'
+import { ACCESS_TOKEN_KEY } from '@/constants/auth.constants'
+
 /**
  * Request is a minimalistic library for handling API requests.
  * Fetch data from the API with provided options.
@@ -11,17 +19,11 @@
  * @param {Function} [options.onError=null] -Callback function to be called on error response.
  * @returns {Promise<{isLoading: boolean, error: string|null, data: any|null}>} - An object containing the loading state, error, and data from the response.
  */
-import { StorageService } from '@/core/services/storage.service'
-
-import { SERVER_URL } from '@/config/url.config'
-
-import { extractErrorMessage } from './extract-error-message'
-import { ACCESS_TOKEN_KEY } from '@/constants/auth.constants'
 
 export async function Request({
 	path,
 	method = 'GET',
-	body = 'null',
+	body = null,
 	headers = {},
 	onSuccess = null,
 	onError = null
@@ -31,13 +33,12 @@ export async function Request({
 		data = null
 	const url = `${SERVER_URL}/api${path}`
 
-	/* ACCESS_TOKEN from LS */
 	const accessToken = new StorageService().getItem(ACCESS_TOKEN_KEY)
 
 	const requestOptions = {
 		method,
 		headers: {
-			ContentType: 'application/json',
+			'Content-Type': 'application/json',
 			...headers
 		}
 	}
@@ -58,21 +59,23 @@ export async function Request({
 
 			if (onSuccess) {
 				onSuccess(data)
-			} else {
-				const errorData = await response.json()
-				const errorMessage = extractErrorMessage(errorData)
-
-				if (onError) {
-					onError(errorMessage)
-				}
-
-				new NotificationService().show('error', errorMessage)
 			}
+		} else {
+			const errorData = await response.json()
+			const errorMessage = extractErrorMessage(errorData)
+
+			if (onError) {
+				onError(errorMessage)
+			}
+
+			new NotificationService().show('error', errorMessage)
 		}
 	} catch (errorData) {
 		const errorMessage = extractErrorMessage(errorData)
 
-		if (onError) {
+		console.log(errorMessage)
+
+		if (errorMessage) {
 			onError(errorMessage)
 
 			new NotificationService().show('error', errorMessage)

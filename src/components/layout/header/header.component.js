@@ -1,5 +1,7 @@
 import { ChildComponent } from '@/core/components/child.component'
+import { query } from '@/core/lib/query/query.lib'
 import renderService from '@/core/services/render.service'
+import { Store } from '@/core/store/store'
 
 import { UserItem } from '@/components/ui/user-item/user-item.component'
 
@@ -14,7 +16,23 @@ export class Header extends ChildComponent {
 	constructor({ router }) {
 		super()
 
+		this.store = Store.getInstance()
+		this.store.addObserver(this)
+
 		this.router = router
+	}
+
+	update() {
+		this.user = this.store.state.user
+
+		const authSideElement = query(this.element).find('#auth-side')
+
+		if (this.user) {
+			this.router.navigate('/')
+			authSideElement.show()
+		} else {
+			authSideElement.hide()
+		}
 	}
 
 	render() {
@@ -32,12 +50,13 @@ export class Header extends ChildComponent {
 							'https://img.icons8.com/?size=100&id=12437&format=png&color=fffafa',
 						name: 'Test User'
 					},
-					false,
-					() => alert('Test User Item')
+					false
 				)
 			],
 			styles
 		)
+
+		this.update()
 
 		return this.element
 	}

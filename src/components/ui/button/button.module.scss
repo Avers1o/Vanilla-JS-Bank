@@ -3,7 +3,7 @@
 
 .button {
 	@include transition(background-color);
-	background-color: $black-blue;
+	background-color: $grey-blue;
 	color: $snow-white;
 	border-radius: $radius;
 	padding: 12px 30px;
@@ -17,7 +17,7 @@
 	}
 
 	&:hover {
-		background-color: scale-color($black-blue, $lightness: 20%);
+		background-color: scale-color($grey-blue, $lightness: 20%);
 	}
 
 	&.green {

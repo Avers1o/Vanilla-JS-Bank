@@ -6,26 +6,35 @@ import * as styles from './field.module.scss'
 import template from './field.template.html'
 
 export class Field extends ChildComponent {
-	constructor({ placeholder, type = 'text', value = '', name, variant }) {
+	constructor({
+		placeholder,
+		type = 'text',
+		name,
+		variant = 'default',
+		value = ''
+	}) {
 		super()
 
 		if (!name) throw new Error('Please fill field "name"!')
 
 		this.placeholder = placeholder
 		this.type = type
-		this.value = value
 		this.name = name
 		this.variant = variant
+		this.value = value
 	}
 
 	render() {
 		this.element = renderService.htmlToElement(template, [], styles)
 
+		query(this.element).attribute('data-input-name', this.name)
+
 		const inputElement = query(this.element).find('input').input({
 			placeholder: this.placeholder,
 			type: this.type,
-			value: this.value,
-			name: this.name
+			name: this.name,
+			variant: this.variant,
+			value: this.value
 		})
 
 		if (this.type === 'number') {

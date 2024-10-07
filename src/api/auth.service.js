@@ -1,11 +1,12 @@
 import { Request } from '@/core/lib/request/request.lib'
 import { NotificationService } from '@/core/services/notification.service'
+import { Store } from '@/core/store/store'
 
 export class AuthService {
 	#BASE_URL = '/auth'
 
 	constructor() {
-		// store
+		this.store = Store.getInstance()
 
 		this.notificationService = new NotificationService()
 	}
@@ -16,12 +17,15 @@ export class AuthService {
 			method: 'POST',
 			body,
 			onSuccess: data => {
-				// store login
+				this.store.login(data.user, data.accessToken)
 
 				this.notificationService.show(
 					'success',
 					'You have successfully registered!'
 				)
+			},
+			onError: errorMessage => {
+				this.notificationService.show('error', errorMessage)
 			}
 		})
 	}
@@ -32,12 +36,15 @@ export class AuthService {
 			method: 'POST',
 			body,
 			onSuccess: data => {
-				// store login
+				this.store.login(data.user, data.accessToken)
 
 				this.notificationService.show(
 					'success',
 					'You have successfully logged in!'
 				)
+			},
+			onError: errorMessage => {
+				this.notificationService.show('error', errorMessage)
 			}
 		})
 	}
