@@ -1,7 +1,7 @@
 /**
  * Represents the Query class for working with DOM elements.
  */
-import { formatCardNumberWithDashes } from '@/components/utils/format/format-card-number'
+import { formatCardNumberWithDashes } from '@/components/utils/format/format-card-number.util'
 
 class Query {
 	constructor(selector) {
@@ -126,6 +126,25 @@ class Query {
 	}
 
 	/* EVENTS */
+
+	/**
+	 * Add a event listener to the selected element for the specified event type.
+	 * @param {string} eventType - The type of the event to listen for (e.g., 'click', 'input', etc.)
+	 * @param {function(Event): void } callback - The event listener function to execute when the event is triggered. The function will receive the event object as its argument.
+	 * @returns {Query} - The current Query instance for chaining.
+	 */
+
+	on(eventType, callback) {
+		if (typeof eventType !== 'string' || typeof callback !== 'function') {
+			throw new Error(
+				'eventType must be a string and callback must be a function'
+			)
+		}
+
+		this.element.addEventListener(eventType, callback)
+
+		return this
+	}
 
 	/**
 	 * Attach a click event listener to the selected element.
@@ -323,6 +342,8 @@ class Query {
 		} else {
 			this.element.classList.add(classNames)
 		}
+
+		return this
 	}
 
 	/**
@@ -339,6 +360,8 @@ class Query {
 		} else {
 			this.element.classList.remove(classNames)
 		}
+
+		return this
 	}
 
 	/**

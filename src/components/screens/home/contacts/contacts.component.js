@@ -9,7 +9,7 @@ import {
 	Loader
 } from '@/components/ui/loader/loader.component'
 import { UserItem } from '@/components/ui/user-item/user-item.component'
-import { formatCardNumberWithDashes } from '@/components/utils/format/format-card-number'
+import { formatCardNumberWithDashes } from '@/components/utils/format/format-card-number.util'
 
 import { UserService } from '@/api/user.service'
 
@@ -30,12 +30,12 @@ export class Contacts extends ChildComponent {
 	}
 
 	fetchData() {
-		this.userService.getAll(null, data => {
-			if (!data) return
+		this.userService.getAll(null, users => {
+			if (!users) return
 
 			this.element.querySelector(LOADER_SELECTOR).remove()
 
-			for (const user of data) {
+			for (const user of users) {
 				query(this.element)
 					.find('#contacts-list')
 					.append(

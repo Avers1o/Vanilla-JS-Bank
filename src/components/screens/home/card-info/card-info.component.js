@@ -3,8 +3,8 @@ import { query } from '@/core/lib/query/query.lib'
 import renderService from '@/core/services/render.service'
 import { Store } from '@/core/store/store'
 
-import { formatCardNumber } from '@/components/utils/format/format-card-number'
-import { formatToCurrency } from '@/components/utils/format/format-to-currency'
+import { formatCardNumber } from '@/components/utils/format/format-card-number.util'
+import { formatToCurrency } from '@/components/utils/format/format-to-currency.util'
 
 import { CardService } from '@/api/card.service'
 

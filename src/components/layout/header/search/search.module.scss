@@ -14,6 +14,13 @@
 		}
 	}
 
+	&:focus-within {
+		> .results .item.visible {
+			opacity: 1;
+			transition: translateY(0);
+		}
+	}
+
 	> svg {
 		@include transition(color);
 		margin-right: 7px;
@@ -38,15 +45,15 @@
 
 		.item {
 			opacity: 0;
-			transform: translateY(-20px);
+			transform: translateY(10px);
 			transition:
 				opacity 0.25s,
 				transform 0.25s;
 
-			&.visible {
-				opacity: 1;
-				transition: translateY(0);
-			}
+			// &.visible {
+			// 	opacity: 1;
+			// 	transition: translateY(0);
+			// }
 		}
 	}
 }

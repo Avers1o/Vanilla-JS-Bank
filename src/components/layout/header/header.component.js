@@ -20,6 +20,14 @@ export class Header extends ChildComponent {
 		this.store.addObserver(this)
 
 		this.router = router
+
+		this.userItem = new UserItem(
+			{
+				avatarPath: '/',
+				name: 'Test User'
+			},
+			false
+		)
 	}
 
 	update() {
@@ -28,8 +36,9 @@ export class Header extends ChildComponent {
 		const authSideElement = query(this.element).find('#auth-side')
 
 		if (this.user) {
-			this.router.navigate('/')
 			authSideElement.show()
+			this.userItem.update(this.user)
+			this.router.navigate('/')
 		} else {
 			authSideElement.hide()
 		}
@@ -44,14 +53,7 @@ export class Header extends ChildComponent {
 					router: this.router
 				}),
 				Search,
-				new UserItem(
-					{
-						avatarPath:
-							'https://img.icons8.com/?size=100&id=12437&format=png&color=fffafa',
-						name: 'Test User'
-					},
-					false
-				)
+				this.userItem
 			],
 			styles
 		)
