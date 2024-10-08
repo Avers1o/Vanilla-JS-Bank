@@ -16,6 +16,7 @@ export class CardService {
 			path: `${this.#BASE_URL}/by-user`,
 			onSuccess,
 			onError: errorMessage => {
+				console.log(errorMessage)
 				this.notificationService.show('error', errorMessage)
 			}
 		})
@@ -36,11 +37,15 @@ export class CardService {
 			method: 'PATCH',
 			body: { amount: +amount },
 			onSuccess: () => {
+				onSuccess()
 				this.notificationService.show(
 					'success',
 					'Balance successfully changed!'
 				)
-				onSuccess()
+			},
+			onError: errorMessage => {
+				console.log(errorMessage)
+				this.notificationService.show('error', errorMessage)
 			}
 		})
 	}
@@ -55,19 +60,25 @@ export class CardService {
 	 */
 
 	transfer({ amount, toCardNumber }, onSuccess) {
+		console.log(amount, toCardNumber)
 		return Request({
 			path: `${this.#BASE_URL}/transfer-money`,
 			method: 'PATCH',
 			body: {
 				amount: +amount,
-				fromCardNumber: this.store.user.card.number,
+				fromCardNumber: this.store.state.user.card.number,
 				toCardNumber
 			},
 			onSuccess: () => {
+				onSuccess()
+
 				this.notificationService.show(
 					'success',
 					'Transfer successfully completed!'
 				)
+			},
+			onError: errorMessage => {
+				this.notificationService.show('error', errorMessage)
 			}
 		})
 	}

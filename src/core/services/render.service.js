@@ -11,10 +11,9 @@ class RenderService {
 	// Формирование HTML-элементов
 
 	htmlToElement(html, components = [], styles) {
-		const template = document.createElement('template')
-		template.innerHTML = html.trim()
-
-		const element = template.content.firstChild
+		const parser = new DOMParser()
+		const document = parser.parseFromString(html, 'text/html')
+		const element = document.body.firstChild
 
 		if (styles) {
 			this.#applyModuleStyles(element, styles)

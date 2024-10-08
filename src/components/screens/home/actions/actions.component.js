@@ -33,7 +33,7 @@ export class Actions extends ChildComponent {
 	updateBalance(event, type) {
 		event.preventDefault()
 
-		if (!this.store.user) {
+		if (!this.store.state.user) {
 			this.notificationService.show('error', 'You need authorization!')
 		}
 

@@ -44,6 +44,7 @@ export class AuthService {
 				)
 			},
 			onError: errorMessage => {
+				console.log(errorMessage)
 				this.notificationService.show('error', errorMessage)
 			}
 		})
