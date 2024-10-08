@@ -1,4 +1,5 @@
 import { Request } from '@/core/lib/request/request.lib'
+import { NotificationService } from '@/core/services/notification.service'
 
 export class TransactionService {
 	#BASE_URL = '/transactions'
